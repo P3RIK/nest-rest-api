@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Post } from '../posts/posts.model';
 
 interface UserCreationAttrs {
     email: string;
@@ -8,7 +9,7 @@ interface UserCreationAttrs {
 @Table({tableName: 'users'})
 export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
-    userID: number;
+    id: number;
 
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     email: string;
@@ -21,4 +22,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @Column({type: DataType.STRING, allowNull: true})
     banReason: string;
+
+    @HasMany(() => Post, 'userID')
+    posts: Post[];
 }
