@@ -1,7 +1,6 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { RolesService } from './roles.service';
-import { GiveRoleDto } from './dto/give-role.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Ролі')
@@ -19,7 +18,7 @@ export class RolesController {
 
     @ApiOperation({summary: 'Отримання ролі за унікальним значенням'})
     @ApiResponse({status: 200, type: Post})
-    @Post()
+    @Get(':value')
     getRole(@Param(':value') value: string) {
         return this.RolesService.getRole(value)
     }

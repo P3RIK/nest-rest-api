@@ -23,10 +23,10 @@ export class UsersController {
         return this.UsersService.getAllUsers()
     }
 
-    @ApiOperation({summary: 'Отримання користувача за його ID'})
+    @ApiOperation({summary: 'Отримання користувача за його Email'})
     @ApiResponse({status: 200, type: User})
-    @Get(':id')
-    getUserById(@Param('id') id: number) {
-        return this.UsersService.getUserById(id)
+    @Get(':email')
+    getUserByEmail(@Param('email') email: string) {
+        return this.UsersService.getUserByEmail(email)
     }
 }
